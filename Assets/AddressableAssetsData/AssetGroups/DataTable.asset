@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: DataTable
+  m_EditorClassIdentifier: 
+  m_GroupName: DataTable
+  m_Data:
+    m_SerializedData: []
+  m_GUID: ef1f2836f9807e547a3ea0802465c719
+  m_SerializeEntries:
+  - m_GUID: c810ea815cc193b418330c94fb48bdbb
+    m_Address: AchievementDataTable
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataTable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 715592c2f4ac64042845aa28c1ee531a
+    m_Address: ChapterDataTable
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataTable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 37e32447cc417684ab169b1c5d6687b1
+    m_Address: ChestRewardProbabilityDataTable
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataTable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a696b54668a5c74d915b59a7004ea96
+    m_Address: ItemDataTable
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataTable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4dcb4820bba7e1d4987b70ba173e282c
+    m_Address: ProductDataTable
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - DataTable
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 50aab246979589948bfe96564ce28ae8, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8403685c69073374485671e74809224b, type: 2}
+    - {fileID: 11400000, guid: a89b9749256daab48a1c08a89836b413, type: 2}

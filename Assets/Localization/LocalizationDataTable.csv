@@ -1,0 +1,12 @@
+﻿Key,Id,Shared Comments,English(en),English(en) Comments,Korean(ko),Korean(ko) Comments
+language,2.39841E+11,,Language,,언어,
+settings,1.59566E+12,,Settings,,설정,
+bgm,1.65266E+12,,BGM,,배경음,
+sfx,1.7555E+12,,SFX,,효과음,
+privacy_policy,1.80397E+12,,Privacy Policy,,개인정보 처리방침,
+logout,1.95514E+12,,Logout,,로그아웃,
+app_update_desc,,,"App version is outdated.
+Will you update your app?",,"앱 버전이 최신이 아닙니다.
+업데이트 하시겠습니까?",
+update,,,Update,,업데이트,
+cancel,,,Cancel,,취소,
