@@ -82,7 +82,9 @@
 * 멀티플 2D 스프라이트에서 하나의 스프라이트(.png)를 추출하는 툴
   - 하나의 파일에 여러 개의 스프라이트로 이루어진 멀티플 2D 스프라이트에서 특정 스프라이트 하나만 추출하기 위한 툴
   - 2D 스프라이트를 유니티 에디터에서 선택하고 툴을 실행하면 선택한 2D 스프라이트만 원하는 경로에 저장할 수 있는 기능
-  - AI를 활용해 제작. 내 프로젝트에 맞게 전체 이미지가 추출될 수 있도록 스프라이트 위치 코드 수정
+  - AI를 활용해 제작
+    + 추출된 단일 스프라이트가 기존의 스프라이트의 설정(PPU, 필터모드)을 유지할 수 있도록 수정
+    + 내 프로젝트에 맞게 전체 이미지가 추출될 수 있도록 아래 처럼 스프라이트 위치 코드 수정
 ```cs
 spriteGO.transform.position = new Vector3(0, -(height / pixelsPerUnit / 2f), 0);
 ```
@@ -184,8 +186,8 @@ public class SpriteToImageExporter : Editor
 
 ## 6. 오류와 문제
 
-* Google sign-in SDK 추가 및 적용할 때 오류
-  - Assets/GoogleSignIn/Editor/m2repository/com/google/signin/google-signin-support/1.0.4(해당하는 버전) 경로의 폴더로 진입하고 .srcaar 파일들을 .aar 확장자로 변경 후 빌드
+* Google sign-in SDK 추가 및 적용 후 빌드 오류
+  - Assets/GoogleSignIn/Editor/m2repository/com/google/signin/google-signin-support/1.0.4(해당하는 버전) 경로의 폴더로 진입하고 .srcaar 파일들을 .aar 확장자로 변경 후 문제 해결 시도
   - 확장자 변경 후 여전히 빌드 에러 발생
   - AI를 활용해 중복된 google-signin-support 라이브러리 문제인 것을 확인
   - 중복 문제를 해결하기 위해 {프로젝트이름}\Assets\Plugins\Android 경로로 가서 mainTemplate.gradle 파일 열기
