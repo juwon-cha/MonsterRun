@@ -2,7 +2,7 @@
 ## <a id="toc"></a>목차
 
 1. [개요](#1-개요)
-2. [클래스 UML](#2-클래스-uml)
+2. [클래스 구조](#2-클래스-구조)
 3. [게임 예시 이미지](#3-게임-예시-이미지)
 4. [기능](#4-기능)
 5. [툴](#5-툴)
@@ -25,7 +25,9 @@
 
 ---
 
-## 2. 클래스 UML
+## 2. 클래스 구조
+
+<img width="2174" alt="ClassDiagram" src="https://github.com/user-attachments/assets/01b89dbf-b018-4fee-b8c1-5b5fa531f5b3" />
 
 [BackToTop](#toc)
 
