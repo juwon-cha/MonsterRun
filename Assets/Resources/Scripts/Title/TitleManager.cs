@@ -167,13 +167,14 @@ public class TitleManager : MonoBehaviour
         foreach (RemoteResourceGroup group in Enum.GetValues(typeof(RemoteResourceGroup)))
         {
             // 각 그룹에 대해 다운르도 받아야할 리소스 용량을 확인
-            AsyncOperationHandle<long> getSizeHandle = Addressables.GetDownloadSizeAsync(group.ToString());
+            AsyncOperationHandle<long> getSizeHandle = Addressables.GetDownloadSizeAsync(group.ToString()/*그룹 레이블 이름(그룹명과 레이블명을 일치시킴)*/);
             yield return getSizeHandle; // 작업이 끝날때까지 대기
 
             if (getSizeHandle.Status == AsyncOperationStatus.Succeeded)
             {
                 Logger.Log($"Download siz for {group}: {getSizeHandle.Result}");
 
+                // 새롭게 다운로드 받아야할 리소스
                 if (getSizeHandle.Result > 0)
                 {
                     totalResourcesDownloadSize += getSizeHandle.Result;
@@ -246,7 +247,7 @@ public class TitleManager : MonoBehaviour
             if(downloadHandle.Status == AsyncOperationStatus.Succeeded) // 다운로드 완료
             {
                 Logger.Log($"{group} download complete successfully");
-                // 리소스 다운로드 후 그 중 하나의 리소스를 로드하려고 할 때 downloadHandle가 해제되어 있지 않으면 오류 발생 가능성 있음
+                // 리소스 다운로드 후 그 중 하나의 리소스를 로드하려고 할 때 downloadHandle이 해제되어 있지 않으면 오류 발생 가능성 있음
                 Addressables.Release(downloadHandle); // 다운로드 작업을 메모리에서 해제
             }
             else

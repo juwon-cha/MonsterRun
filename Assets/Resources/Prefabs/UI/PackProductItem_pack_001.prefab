@@ -65,7 +65,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rare Sword
+  m_text: 'Rare Slime
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 110ce30496d2b1843aa9fc04521e53b9, type: 2}
   m_sharedMaterial: {fileID: 3249717732731881229, guid: 110ce30496d2b1843aa9fc04521e53b9, type: 2}
@@ -199,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 71409424b572dfc4d9aabc4c655d05b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ca0ad845e0cdab4a8cd30d84f86c2f1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1072,10 +1074,10 @@ GameObject:
   m_Component:
   - component: {fileID: 548864127064278634}
   - component: {fileID: 8319671348883056736}
-  - component: {fileID: 3655541847205570415}
   - component: {fileID: 9168470450974740325}
   - component: {fileID: 1856721044910832071}
   - component: {fileID: 5314315348757930547}
+  - component: {fileID: 487388008064842777}
   m_Layer: 5
   m_Name: PackProductItem_pack_001
   m_TagString: Untagged
@@ -1120,19 +1122,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8982629788886162866}
   m_CullTransparentMesh: 0
---- !u!114 &3655541847205570415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8982629788886162866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4218af07e1e64049b16df73ea7dc7a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PurchasedDim: {fileID: 8032490988470617976}
 --- !u!114 &9168470450974740325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,7 +1196,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3655541847205570415}
+      - m_Target: {fileID: 487388008064842777}
         m_TargetAssemblyTypeName: PackProductItem, Assembly-CSharp
         m_MethodName: OnClickItem
         m_Mode: 1
@@ -1240,6 +1229,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &487388008064842777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982629788886162866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117afa5b8af7b23409b3bd403dbdb5f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PurchasedDim: {fileID: 8032490988470617976}
 --- !u!1 &9156413372130668459
 GameObject:
   m_ObjectHideFlags: 0

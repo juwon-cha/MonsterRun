@@ -1,6 +1,6 @@
 ﻿product_id,product_type,product_name,purchase_type,purchase_cost,reward_gem,reward_gold,reward_item_id
-pack_001,Pack,Newbie Pack,IAP,0,300,10000,13001
-pack_002,Pack,Special Pack,IAP,0,1000,50000,15002
+pack_001,Pack,Newbie Pack,Ad,0,300,10000,73001
+pack_002,Pack,Special Pack,IAP,0,1000,50000,75003
 chest_001,Chest,Normal Chest,Gem,80,0,0,0
 chest_002,Chest,Epic Chest,Gem,200,0,0,0
 gem_001,Gem,Gem 001,Ad,0,30,0,0

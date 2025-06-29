@@ -293,17 +293,64 @@ public class AdsManager : SingletonBehaviour<AdsManager>
     #endregion
 
     #region RewardedAds
+    private RewardedAd mPackRewardedAd;
+    private string mPackRewardedAdID;
+
     private RewardedAd mDailyFreeGemRewardedAd;
     private string mDailyFreeGemRewardedAdID;
+
     private const string AOS_REWARDED_TEST_AD = "ca-app-pub-3940256099942544/5224354917";
     private const string IOS_REWARDED_TEST_AD = "ca-app-pub-3940256099942544/1712485313";
+    private const string AOS_PACK_REWARDED_AD_ID = "";
+    private const string IOS_PACK_REWARDED_AD_ID = "";
     private const string AOS_DAILY_FREE_GEM_REWARDED_AD_ID = "";
     private const string IOS_DAILY_FREE_GEM_REWARDED_AD_ID = "";
 
     private void InitRewardedAds()
     {
+        SetPackRewardedAd();
+        LoadPackRewardedAd();
+
         SetDailyFreeGemRewardedAdID();
         LoadDailyFreeGemRewardedAd(); // 전면 광고와 똑같이 비동기 로드 필요
+    }
+
+    private void SetPackRewardedAd()
+    {
+#if DEV_VER
+#if UNITY_ANDROID
+        mPackRewardedAdID = AOS_REWARDED_TEST_AD;
+#elif UNITY_IOS
+        mPackRewardedAdID = IOS_REWARDED_TEST_AD;
+#endif
+#else
+#if UNITY_ANDROID
+        mPackRewardedAdID = AOS_PACK_REWARDED_AD_ID;
+#elif UNITY_IOS
+        mPackRewardedAdID = IOS_PACK_REWARDED_AD_ID;
+#endif
+#endif
+    }
+
+    private void LoadPackRewardedAd()
+    {
+        // ad request 생성
+        var adRequest = new AdRequest();
+
+        // 광고 로딩 요청
+        RewardedAd.Load(mPackRewardedAdID, adRequest,
+            (RewardedAd ad, LoadAdError error) =>
+            {
+                if (error != null || ad == null)
+                {
+                    Logger.LogError($"Rewarded ad failed to load. Error: {error}");
+                    return;
+                }
+
+                Logger.Log($"Rewarded ad loaded successfully. Response: {ad.GetResponseInfo()}");
+                mPackRewardedAd = ad;
+                ListenToPackRewardedAdEvents();
+            });
     }
 
     private void SetDailyFreeGemRewardedAdID()
@@ -342,6 +389,76 @@ public class AdsManager : SingletonBehaviour<AdsManager>
             mDailyFreeGemRewardedAd = ad;
             ListenToDailyFreeGemRewardedAdEvents();
         });
+    }
+
+    private void ListenToPackRewardedAdEvents()
+    {
+        if (mPackRewardedAd == null)
+        {
+            Logger.LogError($"mPackRewardedAd is null");
+            return;
+        }
+
+        // 광고에서 수익이 발생할 때 호출되는 이벤트 리스너 등록
+        mPackRewardedAd.OnAdPaid += (AdValue adValue) =>
+        {
+            Logger.Log($"mPackRewardedAd ad paid {adValue.Value}{adValue.CurrencyCode}");
+        };
+
+        // 광고 노출이 시작됐을 때 호출
+        mPackRewardedAd.OnAdImpressionRecorded += () =>
+        {
+            Logger.Log($"mPackRewardedAd ad recorded an impression");
+        };
+
+        // 광고 클릭
+        mPackRewardedAd.OnAdClicked += () =>
+        {
+            Logger.Log($"mPackRewardedAd ad was clicked");
+        };
+
+        // 광고 클릭 후 광고 컨텐츠 열었을 때
+        mPackRewardedAd.OnAdFullScreenContentOpened += () =>
+        {
+            Logger.Log($"mPackRewardedAd ad full screen content opened");
+        };
+
+        // 광고 컨텐츠 닫고 앱으로 복귀
+        mPackRewardedAd.OnAdFullScreenContentClosed += () =>
+        {
+            Logger.Log($"mPackRewardedAd ad full screen content closed");
+
+            // 보상 광고 객체는 재활용할 수 있는 것이 아니고 일회성 객체이기 때문에
+            // 한 번 광고를 재생하고 나면 새로운 인스턴스를 로드해야 함
+            LoadPackRewardedAd();
+        };
+
+        // 광고 시청 중 오류 발생
+        mPackRewardedAd.OnAdFullScreenContentFailed += (AdError error) =>
+        {
+            Logger.LogError($"mPackRewardedAd ad failed to open full screen content. Error: {error}");
+            LoadPackRewardedAd();
+        };
+    }
+
+    public void ShowPackRewardedAd(Action onPackProductAd = null)
+    {
+        Logger.Log($"Show PackRewardedAd");
+
+        if (mPackRewardedAd != null && mPackRewardedAd.CanShowAd())
+        {
+            mPackRewardedAd.Show((Reward reward) =>
+            {
+                Logger.Log($"Reward PackProduct");
+
+                // 광고 시청이 정상적으로 완료되었을 때 실행할 보상 처리 콜백함수
+                onPackProductAd?.Invoke();
+            });
+        }
+        else
+        {
+            Logger.LogError($"mPackRewardedAd is not ready yet");
+        }
     }
 
     private void ListenToDailyFreeGemRewardedAdEvents()

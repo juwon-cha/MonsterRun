@@ -8,6 +8,9 @@ public class ShopUI : BaseUI
 {
     public ScrollRect mScrollRect;
 
+    // Package
+    public Transform PackProductsGroupTrs;
+
     // Chest
     public GameObject ChestProductItemPrefab;
     public Transform ChestProductsGroupTrs;
@@ -30,9 +33,42 @@ public class ShopUI : BaseUI
     {
         base.SetInfo(uiData);
 
+        SetPackProducts();
         SetChestProducts();
         SetGemProducts();
         SetGoldProducts();
+    }
+
+    private void SetPackProducts()
+    {
+        // 이전에 세팅되어있던 패키지 상품 삭제
+        // -> 삭제 안하면 UI 열고 닫을 때 전에 세팅되어 있던 상품들 남아있는 문제
+        foreach (Transform child in PackProductsGroupTrs)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // 패키지 상품 데이터 가져오기
+        var productList = DataTableManager.Instance.GetProductDataListByProductType(EProductType.Pack);
+        if (productList.Count == 0)
+        {
+            Logger.LogError($"No products. ProductType:{EProductType.Pack}");
+            return;
+        }
+
+        // 상품리스트 순회하면서 각 상품에 맞는 프리팹 UI 로드
+        foreach(var product in productList)
+        {
+            var productItemObj = Instantiate(Resources.Load($"Prefabs/UI/PackProductItem_{product.ProductID}", typeof(GameObject))) as GameObject;
+            productItemObj.transform.SetParent(PackProductsGroupTrs);
+            productItemObj.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+            var packProductItem = productItemObj.GetComponent<PackProductItem>();
+            if(packProductItem != null)
+            {
+                packProductItem.SetInfo(product.ProductID);
+            }
+        }
     }
 
     private void SetChestProducts()

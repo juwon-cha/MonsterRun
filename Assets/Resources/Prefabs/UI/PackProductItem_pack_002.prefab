@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 208, y: -109}
-  m_SizeDelta: {x: 400, y: 50}
+  m_AnchoredPosition: {x: 265.6215, y: -115.44}
+  m_SizeDelta: {x: 515.243, y: 37.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2558416915869711970
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Legendary Ax
+  m_text: Legendary Skeleton
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 110ce30496d2b1843aa9fc04521e53b9, type: 2}
   m_sharedMaterial: {fileID: 3249717732731881229, guid: 110ce30496d2b1843aa9fc04521e53b9, type: 2}
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 44
+  m_fontSizeBase: 44
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 88fe933a2128747469419f7f4d6f04f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cde3fd68c2913c54e8182accd6e9aece, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1073,7 +1073,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5806141323182536137}
   - component: {fileID: 6600121112028543425}
-  - component: {fileID: 2634715898457684287}
   - component: {fileID: 8918383270442281702}
   - component: {fileID: 2402772974923838826}
   - component: {fileID: 4725212494306220232}
@@ -1120,19 +1119,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6925035959361516783}
   m_CullTransparentMesh: 0
---- !u!114 &2634715898457684287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6925035959361516783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4218af07e1e64049b16df73ea7dc7a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PurchasedDim: {fileID: 5812565795257299446}
 --- !u!114 &8918383270442281702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,7 +1193,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2634715898457684287}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PackProductItem, Assembly-CSharp
         m_MethodName: OnClickItem
         m_Mode: 1

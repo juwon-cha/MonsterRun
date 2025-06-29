@@ -34,12 +34,13 @@ public class UserAchievementData : IUserData
 
     public void SetDefaultData()
     {
-        UserAchievementProgressData userAchievementProgressData = new UserAchievementProgressData();
-        userAchievementProgressData.AchievementType = EAchievementType.CollectGold;
-        userAchievementProgressData.AchievementAmount = 1000;
-        userAchievementProgressData.IsAchieved = true;
-        userAchievementProgressData.IsRewardClaimed = false;
-        AchievementProgressDataList.Add(userAchievementProgressData);
+        // TEST
+        //UserAchievementProgressData userAchievementProgressData = new UserAchievementProgressData();
+        //userAchievementProgressData.AchievementType = EAchievementType.CollectGold;
+        //userAchievementProgressData.AchievementAmount = 1000;
+        //userAchievementProgressData.IsAchieved = true;
+        //userAchievementProgressData.IsRewardClaimed = false;
+        //AchievementProgressDataList.Add(userAchievementProgressData);
     }
 
     public void LoadData()

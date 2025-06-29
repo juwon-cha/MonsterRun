@@ -10,6 +10,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 {
     private const string DATA_PATH = "DataTable";
 
+    // 타이틀 매니저에서 원격 리소스 다운로드 끝난 후 데이터 테이블 로드
     public void LoadDataTables()
     {
         LoadChapterDataTable();

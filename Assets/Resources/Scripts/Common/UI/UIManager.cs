@@ -98,6 +98,7 @@ public class UIManager : SingletonBehaviour<UIManager>
     }
 
     // addressables 에셋 폴더에서 로드하여 인스턴스 만듦
+    // 비동기 로드 -> async 키워드 사용
     public async void OpenUIFromAA<T>(BaseUIData uiData)
     {
         Type uiType = typeof(T);
@@ -124,14 +125,17 @@ public class UIManager : SingletonBehaviour<UIManager>
         }
         else // addressables에서 새롭게 에셋을 로드하여 인스턴스 만듦
         {
+            // 에셋 주소값
+            // 예) SettingsUI/SettingsUI.prefab
             AsyncOperationHandle<GameObject> operationHandle = Addressables.LoadAssetAsync<GameObject>($"{uiType}/{uiType}.prefab");
-            await operationHandle.Task;
+            await operationHandle.Task; // 비동기 작업이 완료될 때까지 기다림
 
+            // 비동기 작업 성공(로드 성공)
             if(operationHandle.Status == AsyncOperationStatus.Succeeded)
             {
                 Logger.Log($"UI asset loaded successfully");
 
-                GameObject loadedUIPrefab = operationHandle.Result; // operationHandle의 Result값은 로드하고자 하는 프리팹 게임 오브젝트
+                GameObject loadedUIPrefab = operationHandle.Result; // operationHandle의 Result값은 로드하고자 하는 프리팹(게임 오브젝트)
                 var uiObj = Instantiate(loadedUIPrefab); // 게임 오브젝트 인스턴스 만듦
                 var ui = uiObj.GetComponent<BaseUI>(); // 오브젝트에서 BaseUI 스크립트 가져옴
                 if(!ui)

@@ -60,3 +60,22 @@
 64002,Ring of Strength,40,40
 65002,Ring of Strength,50,50
 71001,Slime,10,10
+72001,Slime,10,20
+73001,Slime,10,30
+74001,Slime,10,40
+75001,Slime,10,50
+71002,SwordSlime,20,10
+72002,SwordSlime,20,20
+73002,SwordSlime,20,30
+74002,SwordSlime,20,40
+75002,SwordSlime,20,50
+71003,Skeleton,30,10
+72003,Skeleton,30,20
+73003,Skeleton,30,30
+74003,Skeleton,30,40
+75003,Skeleton,30,50
+71004,Dino,40,10
+72004,Dino,40,20
+73004,Dino,40,30
+74004,Dino,40,40
+75004,Dino,40,50

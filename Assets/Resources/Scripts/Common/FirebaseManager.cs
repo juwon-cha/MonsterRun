@@ -14,23 +14,23 @@ using UnityEngine;
 
 public class FirebaseManager : SingletonBehaviour<FirebaseManager>
 {
-    // ÆÄÀÌ¾îº£ÀÌ½º°¡ Á¦°øÇÏ´Â ¸ðµç ±â´É¿¡ Á¢±Ù °¡´ÉÇÏµµ·Ï ÇÏ´Â Å¬·¡½º
+    // ï¿½ï¿½ï¿½Ì¾îº£ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½É¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
     private FirebaseApp mApp;
 
     // RemoteConfig
     private FirebaseRemoteConfig mRemoteConfig;
     private bool mbIsRemoteConfigInit = false;
-    private Dictionary<string, object> mRemoteConfigDic = new Dictionary<string, object>(); // remoteconfig °ªÀ» ´ã¾Æ¿À±â À§ÇÑ ÄÁÅ×ÀÌ³Ê
+    private Dictionary<string, object> mRemoteConfigDic = new Dictionary<string, object>(); // remoteconfig ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 
     // Auth
     private FirebaseAuth mAuth;
     private bool mbIsAuthInit = false;
     private const string GOOGLE_WEB_CLIENT_ID = "";
     private GoogleSignInConfiguration mGoogleSignInConfiguration;
-    private FirebaseUser mFirebaseUser; // ·Î±×ÀÎµÈ À¯Àú °´Ã¼
+    private FirebaseUser mFirebaseUser; // ï¿½Î±ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
     private string mUnityEditorUserId = "";
 
-    // °ú°Å ·Î±×ÀÎÇÑ ÀÌ·Â ÀÖ´ÂÁö È®ÀÎ ÈÄ ÀÖÀ¸¸é ÀÎÁõ ¼­ºñ½º ÃÊ±âÈ­ Á÷ÈÄ ÀÚµ¿ ·Î±×ÀÎ Ã³¸®
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½Î±ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     public bool HasSignedInWithGoogle { get; private set; } = false;
     public bool HasSignedInWithApple { get; private set; } = false;
 
@@ -79,7 +79,7 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
             {
                 Logger.Log($"FirebaseApp initialization success.");
 
-                mApp = FirebaseApp.DefaultInstance; // ÆÄÀÌ¾îº£ÀÌ½º ±â´Éµé¿¡ Á¢±ÙÇÏ±â À§ÇÑ Áß¾Ó ÁöÁ¡
+                mApp = FirebaseApp.DefaultInstance; // ï¿½ï¿½ï¿½Ì¾îº£ï¿½Ì½ï¿½ ï¿½ï¿½Éµé¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß¾ï¿½ ï¿½ï¿½ï¿½ï¿½
                 InitRemoteConfig();
                 InitAuth();
                 InitFirestore();
@@ -91,12 +91,12 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
             }
         });
 
-        float elapsedTime = 0f; // °æ°ú ½Ã°£ ÃßÀû
+        float elapsedTime = 0f; // ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
         while (elapsedTime < GlobalDefine.THIRD_PARTY_SERVICE_INIT_TIME)
         {
             if (IsInit())
             {
-                // ¸ðµç ÃÊ±âÈ­ Á¤»óÀûÀ¸·Î ¼öÇàµÊ
+                // ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
                 Logger.Log($"{GetType()} initialization success.");
                 yield break;
             }
@@ -105,11 +105,11 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
             yield return null;
         }
 
-        // ÃÊ±âÈ­ ½Ã°£ ÃÊ°úÇß´Âµ¥µµ ÃÊ±âÈ­µÇÁö ¾Ê¾Ò´Ù¸é ÃÊ±âÈ­ ½ÇÆÐ
+        // ï¿½Ê±ï¿½È­ ï¿½Ã°ï¿½ ï¿½Ê°ï¿½ï¿½ß´Âµï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ï¿½
         Logger.LogError($"FirebaseApp initialization failed.");
     }
 
-    // https://worldtimeapi.org/api/ip¿¡¼­ ½Ã°£ ¹Þ¾Æ¿À´Â ´ë½Å Firestore Database·ÎºÎÅÍ ¼­¹ö ½Ã°£ °¡Á®¿È
+    // https://worldtimeapi.org/api/ipï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Firestore Databaseï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public async Task<DateTime> GetCurrentDateTime()
     {
         // Request server timestamp from Firestore DB
@@ -139,7 +139,7 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
         mRemoteConfigDic.Add("dev_app_version", string.Empty);
         mRemoteConfigDic.Add("release_app_version", string.Empty);
 
-        // RemoteConfig ¸Å°³º¯¼ö °ªµéÀ» ÆÄÀÌ¾îº£ÀÌ½º ¼­¹ö¿¡¼­ °¡Á®¿È
+        // RemoteConfig ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾îº£ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         mRemoteConfig.SetDefaultsAsync(mRemoteConfigDic).ContinueWithOnMainThread(task =>
         {
             mRemoteConfig.FetchAsync(TimeSpan.Zero).ContinueWithOnMainThread(fetchTask =>
@@ -150,7 +150,7 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
                     {
                         if(activateTask.IsCompleted)
                         {
-                            // RemoteConfig ¸Å°³º¯¼ö °ª °¡Á®¿Í¼­ Dictionary¿¡ ÀúÀå
+                            // RemoteConfig ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ Dictionaryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                             mRemoteConfigDic["dev_app_version"] = mRemoteConfig.GetValue("dev_app_version").StringValue;
                             mRemoteConfigDic["release_app_version"] = mRemoteConfig.GetValue("release_app_version").StringValue;
                             mbIsRemoteConfigInit = true;
@@ -182,15 +182,15 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
     #region AUTH
     private void InitAuth()
     {
-        mAuth = FirebaseAuth.DefaultInstance; // auth º¯¼ö¿¡ ÀÎÁõ ¼­ºñ½º °´Ã¼ ´ëÀÔ
+        mAuth = FirebaseAuth.DefaultInstance; // auth ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
         if(mAuth == null)
         {
             Logger.LogError($"FirebaseApp initialization failed. FirebaseAuth is null");
             return;
         }
 
-        // ÀÎÁõ »óÅÂ º¯È­¿¡ µû¶ó ÀÌº¥Æ® ¹ß»ý -> ½ÇÇàÇØÁÙ ÀÌº¥Æ® ÇÔ¼ö ´ëÀÔ
-        mAuth.StateChanged += OnAuthStateChanged; // ·Î±×ÀÎ, ·Î±×¾Æ¿ô µî »óÅÂ º¯È­ ÀÖÀ» ¶§ -> ÀÚµ¿À¸·Î È£Ãâ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ß»ï¿½ -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+        mAuth.StateChanged += OnAuthStateChanged; // ï¿½Î±ï¿½ï¿½ï¿½, ï¿½Î±×¾Æ¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ -> ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
 
         mGoogleSignInConfiguration = new GoogleSignInConfiguration
         {
@@ -200,10 +200,10 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
 
         mbIsAuthInit = true;
 
-        // ÇöÀç À¯Àú°¡ null(·Î±×ÀÎÇÑ À¯Àú°¡ ¾ø´Ù¸é)ÀÌ°í,
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ null(ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½)ï¿½Ì°ï¿½,
         if (mAuth.CurrentUser == null)
         {
-            // °ú°Å¿¡ ±¸±Û ·Î±×ÀÎÇÑ ÀÌ·ÂÀÌ ÀÖÀ¸¸é ÀÚµ¿ ·Î±×ÀÎ Ã³¸®
+            // ï¿½ï¿½ï¿½Å¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½Î±ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
             if(HasSignedInWithGoogle)
             {
                 SignInWithGoogle();
@@ -215,23 +215,23 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
         }
         else
         {
-            // °ÔÀÓ Á¾·á ÇÏÀÚ¸¶ÀÚ ´Ù½Ã °ÔÀÓ ½ÃÀÛÇÏ¸é ÀÌÀü ·Î±×ÀÎ ¼¼¼Ç »ì¾ÆÀÖÀ½
-            // -> ÀÌÀü À¯Àú Á¤º¸¸¦ ´ëÀÔ
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            // -> ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             mFirebaseUser = mAuth.CurrentUser;
         }
     }
 
-    // À¯Àú°¡ ·Î±×¾Æ¿ôÇÏ°Å³ª ÀÎÅÍ³Ý ¿¬°áÀÌ ÇØÁ¦µÇ¾î ÀÎÁõ »óÅÂ º¯È­°¡ ÀÏ¾î³ª¸é °­Á¦·Î Å¸ÀÌÆ² È­¸éÀ¸·Î º¸³» Àç·Î±×ÀÎÇÏ°Ô ¸¸µé±â À§ÇÔ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±×¾Æ¿ï¿½ï¿½Ï°Å³ï¿½ ï¿½ï¿½ï¿½Í³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ï¾î³ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½Æ² È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private void OnAuthStateChanged(object sender, System.EventArgs eventArgs)
     {
-        // ÇöÀç ¾ÀÀÌ Å¸ÀÌÆ²¾ÀÀÇ °æ¿ì ¿¹¿ÜÃ³¸®
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½Æ²ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
         if(SceneLoader.Instance.GetCurrentScene() == ESceneType.Title)
         {
             return;
         }
 
-        // ·Îºñ ¾ÀÀÌ³ª ÀÎ°ÔÀÓ ¾À¿¡¼­ ÇöÀç À¯Àú°¡ ·Î±×¾Æ¿ôÇß´ÂÁö ÀÎÅÍ³Ý ¿¬°áÀÌ ÇØÁ¦µÇ¾ú´ÂÁö Ã¼Å©
-        // ÀÎÁõ ¼­ºñ½º °´Ã¼´Â Á¸ÀçÇÏÁö¸¸ ÇöÀç À¯Àú°¡ ¾ø´Â »óÅÂ -> ·Î±×¾Æ¿ô, ÀÎÅÍ³Ý ²÷±èÀ¸·Î ÆÇ´Ü
+        // ï¿½Îºï¿½ ï¿½ï¿½ï¿½Ì³ï¿½ ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±×¾Æ¿ï¿½ï¿½ß´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -> ï¿½Î±×¾Æ¿ï¿½, ï¿½ï¿½ï¿½Í³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½
         if(mAuth != null && mAuth.CurrentUser == null)
         {
             Logger.Log("User signed out or disconnected.");
@@ -241,26 +241,26 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
             SaveData();
             AudioManager.Instance.StopBGM();
             UIManager.Instance.CloseAllOpenUI();
-            SceneLoader.Instance.LoadScene(ESceneType.Title); // Å¸ÀÌÆ² ¾ÀÀ¸·Î °­Á¦ ÀÌµ¿
+            SceneLoader.Instance.LoadScene(ESceneType.Title); // Å¸ï¿½ï¿½Æ² ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         }
     }
 
     public bool IsSignedIn()
     {
 #if UNITY_EDITOR
-        return true; // À¯´ÏÆ¼ ¿¡µðÅÍ¿¡¼­´Â ±¸±Û/¾ÖÇÃ °èÁ¤ ·Î±×ÀÎ µ¿ÀÛ ¾ÈÇÔ -> ¿¡µðÅÍ »ó¿¡¼­ ÀÎÁõ °úÁ¤ ¹«½Ã(¹«Á¶°Ç ·Î±×ÀÎ)
+        return true; // ï¿½ï¿½ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ó¿¡¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½)
 #else
-        return mFirebaseUser != null; // ÆÄÀÌ¾îº£ÀÌ½º À¯Àú °´Ã¼°¡ nullÀÌ ¾Æ´ÑÁö Ã¼Å©
+        return mFirebaseUser != null; // ï¿½ï¿½ï¿½Ì¾îº£ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ nullï¿½ï¿½ ï¿½Æ´ï¿½ï¿½ï¿½ Ã¼Å©
 #endif
     }
 
     public void SignInWithGoogle()
     {
         GoogleSignIn.Configuration = mGoogleSignInConfiguration;
-        // ±¸±Û °èÁ¤ ·Î±×ÀÎ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½
         GoogleSignIn.DefaultInstance.SignIn().ContinueWithOnMainThread(task =>
         {
-            // ·Î±×ÀÎ ½ÇÆÐ
+            // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (task.IsCanceled || task.IsFaulted)
             {
                 if (task.IsCanceled)
@@ -276,15 +276,15 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
                 return;
             }
 
-            // Á¤»óÀûÀÎ ±¸±Û ·Î±×ÀÎ Ã³¸® -> ÆÄÀÌ¾îº£ÀÌ½º ÀÎÁõ Ã³¸®
-            // ·Î±×ÀÎµÈ °èÁ¤À» ÅëÇØ °ÔÀÓ¿¡ ´ëÇÑ À¯Àú ÀÎÁõ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ -> ï¿½ï¿½ï¿½Ì¾îº£ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+            // ï¿½Î±ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             GoogleSignInUser googleUser = task.Result;
-            // ÀÚ°Ý Áõ¸í °´Ã¼ »ý¼º
+            // ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
             Credential credential = GoogleAuthProvider.GetCredential(googleUser.IdToken, null);
-            // ÀÎÁõ ¿äÃ»
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
             mAuth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(authTask =>
             {
-                // °á°ú ÄÝ¹é ¿À¸é authTask º¯¼ö¸¦ ÅëÇØ Ãë¼ÒµÇ¾ú°Å³ª ¿¡·¯ ¹ß»ýÇß´ÂÁö È®ÀÎ
+                // ï¿½ï¿½ï¿½ ï¿½Ý¹ï¿½ ï¿½ï¿½ï¿½ï¿½ authTask ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÒµÇ¾ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
                 if(authTask.IsCanceled || authTask.IsFaulted)
                 {
                     if (authTask.IsCanceled)
@@ -300,13 +300,13 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
                     return;
                 }
 
-                // ÀÎÁõ ¼º°ø
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 mFirebaseUser = authTask.Result;
                 Logger.Log($"User signed in successfully: {mFirebaseUser.DisplayName} ({mFirebaseUser.UserId})");
 
                 HasSignedInWithGoogle = true;
                 HasSignedInWithApple = true;
-                SaveData(); // ·ÎÄÃ±â±â¿¡ ·Î±×ÀÎ Á¤º¸ ÀúÀå
+                SaveData(); // ï¿½ï¿½ï¿½Ã±ï¿½â¿¡ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             });
         });
     }
@@ -318,7 +318,7 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
 
     public void SignOut()
     {
-        // ÇöÀç À¯Àú Á¸ÀçÇÏ¸é ·Î±×¾Æ¿ô
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Î±×¾Æ¿ï¿½
         if(mFirebaseUser != null)
         {
             mAuth.SignOut();
@@ -333,7 +333,7 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
         SaveData();
         AudioManager.Instance.StopBGM();
         UIManager.Instance.CloseAllOpenUI();
-        SceneLoader.Instance.LoadScene(ESceneType.Title); // Å¸ÀÌÆ² ¾ÀÀ¸·Î °­Á¦ ÀÌµ¿
+        SceneLoader.Instance.LoadScene(ESceneType.Title); // Å¸ï¿½ï¿½Æ² ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 #endif
     }
 
@@ -346,7 +346,7 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
         uiData.OKBtnTxt = "OK";
         uiData.OnClickOKBtn = () =>
         {
-            // OK ´©¸£¸é ´Ù½Ã ·Î±×ÀÎ UI°¡ ¿­¸®µµ·Ï Ã³¸®
+            // OK ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ UIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
             var uiData = new BaseUIData();
             UIManager.Instance.OpenUI<LoginUI>(uiData);
         };
@@ -377,14 +377,14 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
         mbIsFirestoreInit = true;
     }
 
-    // µ¥ÀÌÅÍ ÀúÀå
-    // °¢ À¯Àú µ¥ÀÌÅÍ Å¬·¡½º °´Ã¼´Â ÇÏ³ªÀÇ CollectionÀÌ µÇ¾î DB¿¡ ÀúÀåµÊ
-    // Collection -> µ¿ÀÏÇÑ ÇüÅÂÀÇ Document¸¦ ¿©·¯ °³ °¡Áö°í ÀÖ´Â ÄÁÅ×ÀÌ³Ê
-    // °¢ À¯Àú µ¥ÀÌÅÍ Å¬·¡½º¿¡ ´ëÇØ Å¬·¡½º¸í°ú ÀÏÄ¡ÇÏ´Â ÄÃ·º¼ÇÀ» ¸¸µé°í ±× ÇÏÀ§¿¡ °¢°¢ÀÇ À¯Àú ¾ÆÀÌµð·Î ¸í¸íµÈ µµÅ¥¸ÕÆ®¸¦ ÀúÀå
-    // ÀçÈ­ µ¥ÀÌÅÍ·Î ¿¹¸¦ µé¸é, µµÅ¥¸ÕÆ®´Â °¢ À¯ÀúÀÇ ÀçÈ­ µ¥ÀÌÅÍ¸¦ ´ã°í ÀÖ´Â µµÅ¥¸ÕÆ®ÀÌ´Ù
-    // µµÅ¥¸ÕÆ® ÇÏÀ§¿¡´Â ¿©·¯ °³ÀÇ ÇÊµå°ªÀÌ ÀÖ´Ù(ÀÌ ÇÊµå°¡ ½ÇÁ¦·Î ÀúÀåÇÏ·Á´Â À¯ÀúÀÇ µ¥ÀÌÅÍÀÌ´Ù)
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ Collectionï¿½ï¿½ ï¿½Ç¾ï¿½ DBï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+    // Collection -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Documentï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¥ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½ï¿½Å¥ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Å¥ï¿½ï¿½Æ®ï¿½Ì´ï¿½
+    // ï¿½ï¿½Å¥ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Êµå°ªï¿½ï¿½ ï¿½Ö´ï¿½(ï¿½ï¿½ ï¿½Êµå°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½)
 
-    // ¿¹)
+    // ï¿½ï¿½)
     // [Collection]           [Document]          [Field]
     // UserGoodsData    ----   UserId 1    ----  Gem : 100
     //                                     ----  Gold : 100
@@ -396,27 +396,27 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
     //                  ----   UserId2      ---- SFX : false
     //                                      ---- BGM : true
 
-    // T´Â À¯Àú µ¥ÀÌÅÍ Å¬·¡½º -> T´Â Å¬·¡½ºÀÌ¸é¼­ IUserData ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇØ¾ßÇÔ
-    // ·Îµù ¿Ï·áÈÄ ÁøÇàÇØ¾ß ÇÒ ÀÛ¾÷À» Á¤ÀÇÇØÁÙ ¼ö ÀÖ´Â Actionº¯¼ö¸¦ ¸Å°³º¯¼ö·Î ¹ÞÀ½
+    // Tï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ -> Tï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸é¼­ IUserData ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
+    // ï¿½Îµï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ Actionï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void LoadUserData<T>(Action onFinishLoad = null) where T : class, IUserData
     {
         Type type = typeof(T);
-        // Å¬·¡½º ÀÌ¸§À» ¹®ÀÚ¿­·Î Collection¿¡ ¸Å°³º¯¼ö·Î ³Ñ°ÜÁÜ
-        // Document(GetUserId()) -> Æ¯Á¤ À¯Àú ¾ÆÀÌµðÀÇ µµÅ¥¸ÕÆ®¸¦ °¡Á®¿È
-        // GetSnapshotAsync() ½ÇÁ¦ µ¥ÀÌÅÍ °¡Á®¿È
+        // Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ Collectionï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½
+        // Document(GetUserId()) -> Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½Å¥ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // GetSnapshotAsync() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         mDatabase.Collection($"{type}").Document(GetUserId()).GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
-            // µ¥ÀÌÅÍ ¿äÃ» ÀÛ¾÷ ¿Ï·á ÈÄ task º¯¼ö·Î °á°ú°¡ Á¤»óÀûÀ¸·Î ³Ñ¾î¿À¸é
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½Û¾ï¿½ ï¿½Ï·ï¿½ ï¿½ï¿½ task ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½
             if (task.IsCompleted)
             {
-                // ·ÎµùÇÏ°íÀÚ Çß´ø T Å¬·¡½º À¯Àúµ¥ÀÌÅÍ¸¦ À¯Àú µ¥ÀÌÅÍ ¸Å´ÏÀú¿¡¼­ ¹Þ¾Æ¿È
+                // ï¿½Îµï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½ß´ï¿½ T Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½
                 IUserData userData = UserDataManager.Instance.GetUserData<T>();
-                DocumentSnapshot snapshot = task.Result; // °¡Á®¿Â µ¥ÀÌÅÍ °á°ú¸¦ DocumentSnapshot¿¡ ÀúÀå
-                if(snapshot.Exists) // Ã£À¸·Á´Â µ¥ÀÌÅÍ°¡  DB¿¡ Á¸ÀçÇÏ´ÂÁö Ã¼Å©
+                DocumentSnapshot snapshot = task.Result; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ DocumentSnapshotï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                if(snapshot.Exists) // Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½  DBï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ Ã¼Å©
                 {
                     Logger.Log($"{type} loaded successfully.");
 
-                    Dictionary<string, object> userDataDict = snapshot.ToDictionary(); // ·ÎµåÇÑ µ¥ÀÌÅÍ¸¦ µñ¼Å³Ê¸®·Î ÀúÀå
+                    Dictionary<string, object> userDataDict = snapshot.ToDictionary(); // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½Å³Ê¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     userData.SetData(userDataDict);
                 }
                 else
@@ -439,16 +439,16 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
     public void SaveUserData<T>(Dictionary<string, object> userDataDict) where T : class, IUserData
     {
         Type type = typeof(T);
-        // µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ À¯Àú µ¥ÀÌÅÍ °´Ã¼¸¦ °¡Á®¿È
-        // À¯Àú µ¥ÀÌÅÍ °´Ã¼ -> µ¥ÀÌÅÍº£ÀÌ½º¿¡ Á¸ÀçÇÏ´Â ¿ì¸®°¡ ÀúÀåÇÒ ÄÃ·º¼Ç Å¸ÀÔ ¾È¿¡ ÀúÀåµÈ Æ¯Á¤ À¯Àú ¾ÆÀÌµð µµÅ¥¸ÕÆ®¸¦ ÀÇ¹ÌÇÔ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ -> ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ì¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Å¥ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ç¹ï¿½ï¿½ï¿½
         DocumentReference docRef = mDatabase.Collection($"{type}").Document(GetUserId());
 
-        // µµÅ¥¸ÕÆ® °´Ã¼¿¡ ¸Å°³º¯¼ö·Î ¹ÞÀº userDataDict¸¦ ÀúÀåÇÏµµ·Ï ¿äÃ»
+        // ï¿½ï¿½Å¥ï¿½ï¿½Æ® ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ userDataDictï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
         docRef.SetAsync(userDataDict).ContinueWithOnMainThread(task =>
         {
             if(task.IsCompleted)
             {
-                // ÀúÀå ¼º°ø
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 Logger.Log($"{type} saved successfully.");
 
             }
@@ -477,7 +477,7 @@ public class FirebaseManager : SingletonBehaviour<FirebaseManager>
 
         FirebaseAnalytics.LogEvent(eventName, firebaseParameters.ToArray());
 
-        // ¿¹) Ã©ÅÍ Å¬¸®¾îÇÒ ¶§ ÆÄÀÌ¾îº£ÀÌ½º·Î ·Î±× Àü¼Û
+        // ï¿½ï¿½) Ã©ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾îº£ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
     #endregion
 
