@@ -3,7 +3,7 @@
 
 1. [개요](#1-개요)
 2. [클래스 구조](#2-클래스-구조)
-3. [게임 예시 이미지](#3-게임-예시-이미지)
+3. [플레이 영상](#3-플레이-영상)
 4. [기능](#4-기능)
 5. [툴](#5-툴)
 6. [오류와 문제](#6-오류와-문제)
@@ -33,15 +33,15 @@
 
 ---
 
-## 3. 게임 예시 이미지
+## 3. 플레이 영상
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/3e76ee18-3800-4410-af73-57c66cf3546c" width="150"/>
-  <img src="https://github.com/user-attachments/assets/a293d7fa-0ddf-4a21-8a01-04b63e019a74" width="150"/>
-  <img src="https://github.com/user-attachments/assets/7d465dc4-cc17-4440-a75a-58c2a20fc96a" width="150"/>
-  <img src="https://github.com/user-attachments/assets/ac2dd375-2bbc-4694-aef3-9d281b3cc83e" width="150"/>
-  <img src="https://github.com/user-attachments/assets/e0a2bcb8-81a2-4966-9406-d60c44e053f3" width="150"/>
-</p>
+<div align="center">
+
+  <a href="https://www.youtube.com/watch?v=xQC571TGAlY">
+    <img src="https://img.youtube.com/vi/xQC571TGAlY/maxresdefault.jpg" width="600" alt="첫 번째 유튜브 영상 썸네일">
+  </a>
+
+</div>
 
 [BackToTop](#toc)
 
